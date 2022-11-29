@@ -1,0 +1,98 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<Course_Homework.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    using (Html.BeginForm())
+    {
+        <p>
+            <input placeholder="Movie name" @Html.TextBox("NameSearch")
+            <input placeholder="Writer name" @Html.TextBox("WriterSearch")
+            <input type="submit" value="Search" />
+        </p>
+    }
+}
+
+
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm }, new { sortColumn = "name" })
+        </th>
+        <th>
+            @Html.ActionLink("Genre", "Index", new { sortOrder = ViewBag.GenreSortParm }, new { sortColumn = "genre" })
+        </th>
+        <th>
+            @Html.ActionLink("Rating", "Index", new { sortOrder = ViewBag.RatingSortParm }, new { sortColumn = "rating" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DirectedBy)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.WrittenBy)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre.GenrePlace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating.RatingPlace)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.DirectedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WrittenBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.MovieID }) <span> |</span>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MovieID }) <span> |</span>
+                    }
+             
+                    @Html.ActionLink("Details", "Details", new { id = item.MovieID })
+                }
+            </td>
+        </tr>
+
+    }
+
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { nameSearch = ViewBag.NameSearch, writerSearch = ViewBag.WriterSearch, page }))

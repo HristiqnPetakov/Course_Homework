@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Course_Homework.Models.Rating>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RatingPlace)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Language)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DistributedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Award)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BoxOffice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RatingPlace)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Language)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DistributedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Award)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BoxOffice)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RatingID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RatingID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RatingID })
+        </td>
+    </tr>
+}
+
+</table>

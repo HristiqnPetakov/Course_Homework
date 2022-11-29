@@ -1,0 +1,66 @@
+﻿@model Course_Homework.Models.Genre
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Genre</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GenrePlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GenrePlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProducedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProducedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BasedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BasedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RunningTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RunningTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Budget)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Budget)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nominations)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nominations)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GenreID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
